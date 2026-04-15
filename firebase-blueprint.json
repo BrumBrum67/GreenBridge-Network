@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "Stores member profiles. Access is granted automatically upon secure authentication.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "organization": { "type": "string" },
+        "tier": { "type": "string", "enum": ["Anchor", "Participant", "Observer", "Associate", "Pending"] },
+        "verified": { "type": "boolean" },
+        "onboarded": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "tier", "verified"]
+    },
+    "companies": {
+      "title": "Company Profile",
+      "description": "Stores detailed company information for matching.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "description": { "type": "string" },
+        "offers": { "type": "array", "items": { "type": "string" } },
+        "seeks": { "type": "string" },
+        "quantityPerYear": { "type": "string" },
+        "frequency": { "type": "string" },
+        "wasteProcessing": { "type": "string" },
+        "certifications": { "type": "array", "items": { "type": "string" } },
+        "transportPreference": { "type": "array", "items": { "type": "string" } },
+        "borderRegion": { "type": "string" },
+        "logoUrl": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "description", "offers", "borderRegion"]
+    },
+    "initiatives": {
+      "title": "Initiative",
+      "description": "Stores cross-border projects and domain tracks.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "trackId": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string" },
+        "ownerUid": { "type": "string" }
+      },
+      "required": ["name", "trackId", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile documents"
+    },
+    "/initiatives/{initiativeId}": {
+      "schema": "initiatives",
+      "description": "Sustainability initiatives"
+    },
+    "/companies/{companyId}": {
+      "schema": "companies",
+      "description": "Company profiles for matching"
+    }
+  }
+}

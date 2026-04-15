@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-bg-primary: #fcfdfc;
+  --color-bg-secondary: #f4f7f4;
+  --color-border-subtle: #e2e8e2;
+  --color-text-primary: #1a2e1a;
+  --color-text-secondary: #4a5d4a;
+  --color-accent: #2d5a27;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-block px-5 py-2.5 bg-[var(--color-accent)] text-white text-[12px] font-semibold rounded-[2px] uppercase tracking-[0.5px] transition-opacity hover:opacity-90;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent text-[var(--color-accent)] border border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white;
+  }
+
+  .action-card {
+    @apply border border-[var(--color-border-subtle)] p-6 rounded-[4px] transition-colors hover:border-[var(--color-accent)];
+  }
+}
